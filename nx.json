@@ -45,6 +45,11 @@
       ],
       "cache": true
     },
+    "dev": {
+      "dependsOn": [
+        "start:watch"
+      ]
+    },
     "lint": {
       "cache": true
     }
