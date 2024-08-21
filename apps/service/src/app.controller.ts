@@ -1,5 +1,5 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { PusherService } from './pusher/pusher.service';
+import { Body, Controller, Post } from '@nestjs/common'
+import { PusherService } from './pusher/pusher.service'
 
 @Controller('api')
 export class AppController {

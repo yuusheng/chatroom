@@ -8,6 +8,9 @@ importers:
 
   .:
     devDependencies:
+      '@eslint/js':
+        specifier: ^9.9.0
+        version: 9.9.0
       '@nestjs/schematics':
         specifier: ^10.0.1
         version: 10.1.4(chokidar@3.6.0)(typescript@5.5.4)
@@ -35,6 +38,15 @@ importers:
       eslint:
         specifier: ~8.57.0
         version: 8.57.0
+      eslint-plugin-react-hooks:
+        specifier: ^5.1.0-rc.0
+        version: 5.1.0-rc-fb9a90fa48-20240614(eslint@8.57.0)
+      eslint-plugin-react-refresh:
+        specifier: ^0.4.9
+        version: 0.4.9(eslint@8.57.0)
+      globals:
+        specifier: ^15.9.0
+        version: 15.9.0
       nx:
         specifier: 19.6.1
         version: 19.6.1
@@ -57,9 +69,6 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
     devDependencies:
-      '@eslint/js':
-        specifier: ^9.9.0
-        version: 9.9.0
       '@types/react':
         specifier: ^18.3.3
         version: 18.3.3
@@ -69,18 +78,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.3.1
         version: 4.3.1(vite@5.4.1(@types/node@22.4.1)(terser@5.31.6))
-      eslint:
-        specifier: ^9.9.0
-        version: 9.9.0
-      eslint-plugin-react-hooks:
-        specifier: ^5.1.0-rc.0
-        version: 5.1.0-rc-fb9a90fa48-20240614(eslint@9.9.0)
-      eslint-plugin-react-refresh:
-        specifier: ^0.4.9
-        version: 0.4.9(eslint@9.9.0)
-      globals:
-        specifier: ^15.9.0
-        version: 15.9.0
       typescript:
         specifier: ^5.5.3
         version: 5.5.4
@@ -7476,13 +7473,13 @@ snapshots:
       '@types/eslint': 9.6.0
       eslint-config-prettier: 9.1.0(eslint@8.57.0)
 
-  eslint-plugin-react-hooks@5.1.0-rc-fb9a90fa48-20240614(eslint@9.9.0):
+  eslint-plugin-react-hooks@5.1.0-rc-fb9a90fa48-20240614(eslint@8.57.0):
     dependencies:
-      eslint: 9.9.0
+      eslint: 8.57.0
 
-  eslint-plugin-react-refresh@0.4.9(eslint@9.9.0):
+  eslint-plugin-react-refresh@0.4.9(eslint@8.57.0):
     dependencies:
-      eslint: 9.9.0
+      eslint: 8.57.0
 
   eslint-scope@5.1.1:
     dependencies:

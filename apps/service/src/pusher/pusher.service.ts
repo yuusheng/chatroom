@@ -1,5 +1,5 @@
-import { Injectable } from "@nestjs/common";
-import * as Pusher from "pusher";
+import { Injectable } from "@nestjs/common"
+import * as Pusher from "pusher"
 
 @Injectable()
 export class PusherService {
@@ -12,10 +12,10 @@ export class PusherService {
       secret: "28250c3ca0e976177f58",
       cluster: "ap3",
       useTLS: true,
-    });
+    })
   }
 
-  async trigger(channel: string, event: string, data: any) {
+  async trigger(channel: string, event: string, data: unknown) {
     await this.pusher.trigger(channel, event, data)
   }
 }

@@ -1,20 +1,20 @@
-import { useEffect, useRef, useState, type FormEvent } from "react";
-import "./App.css";
-import pusherJs from "pusher-js";
+import { useEffect, useRef, useState, type FormEvent } from "react"
+import "./App.css"
+import pusherJs from "pusher-js"
 
 interface Message {
   username: string;
   message: string;
-  id: number;
+  id: number
 }
 function App() {
-  const [username, setUsername] = useState("");
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [message, setMessage] = useState("");
+  const [username, setUsername] = useState("")
+  const [messages, setMessages] = useState<Message[]>([])
+  const [message, setMessage] = useState("")
   const count = useRef(0)
 
   const submit = async (e: FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
 
     await fetch("http://localhost:3000/api/messages", {
       method: "POST",
@@ -26,28 +26,28 @@ function App() {
         username,
         id: count.current++
       }),
-    });
+    })
 
-    setMessage("");
-  };
+    setMessage("")
+  }
 
   useEffect(() => {
-    pusherJs.logToConsole = true;
+    pusherJs.logToConsole = true
 
     const pusher = new pusherJs("332ec1764f96bb71fe19", {
       cluster: "ap3",
-    });
+    })
 
-    const channel = pusher.subscribe("chat");
+    const channel = pusher.subscribe("chat")
     channel.bind("message", (data: Message) => {
-      setMessages((prev) => ([...prev, data]));
-    });
+      setMessages((prev) => ([...prev, data]))
+    })
 
     return () => {
       pusher.unsubscribe('chat')
-      channel.unbind_all();
-    };
-  }, []);
+      channel.unbind_all()
+    }
+  }, [])
 
   return (
     <>
@@ -74,7 +74,7 @@ function App() {
         />
       </form>
     </>
-  );
+  )
 }
 
-export default App;
+export default App
