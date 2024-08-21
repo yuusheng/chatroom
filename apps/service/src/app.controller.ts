@@ -8,9 +8,10 @@ export class AppController {
   @Post('messages')
   async messages(
     @Body('username') username: string,
-    @Body('message') message: string
+    @Body('message') message: string,
+    @Body('id') id: number
   ) {
-    await this.pusherService.trigger('chat', 'message', { username, message })
+    await this.pusherService.trigger('chat', 'message', { username, message, id })
 
     return []
   }

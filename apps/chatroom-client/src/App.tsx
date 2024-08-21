@@ -1,41 +1,78 @@
-import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import "./App.css";
+import pusherJs from "pusher-js";
 
+interface Message {
+  username: string;
+  message: string;
+  id: number;
+}
 function App() {
-  const [count, setCount] = useState(0);
+  const [username, setUsername] = useState("");
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [message, setMessage] = useState("");
+  const count = useRef(0)
 
-  const [result, setResult] = useState("");
+  const submit = async (e: FormEvent) => {
+    e.preventDefault();
+
+    await fetch("http://localhost:3000/api/messages", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        message,
+        username,
+        id: count.current++
+      }),
+    });
+
+    setMessage("");
+  };
 
   useEffect(() => {
-    fetch("http://localhost:3000").then(async (result) => {
-      setResult(await result.text());
+    pusherJs.logToConsole = true;
+
+    const pusher = new pusherJs("332ec1764f96bb71fe19", {
+      cluster: "ap3",
     });
+
+    const channel = pusher.subscribe("chat");
+    channel.bind("message", (data: Message) => {
+      setMessages((prev) => ([...prev, data]));
+    });
+
+    return () => {
+      pusher.unsubscribe('chat')
+      channel.unbind_all();
+    };
   }, []);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>{result}</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <label htmlFor="username">User Name: </label>
+      <input
+        id="username"
+        type="text"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+      />
+
+      <ul>
+        {messages.map((message) => (
+          <li key={message.id}>{JSON.stringify(message)}</li>
+        ))}
+      </ul>
+
+      <form onSubmit={submit}>
+        <label htmlFor="message">message: </label>
+        <input
+          id="message"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+      </form>
     </>
   );
 }

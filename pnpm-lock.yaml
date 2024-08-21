@@ -47,6 +47,9 @@ importers:
 
   apps/chatroom-client:
     dependencies:
+      pusher-js:
+        specifier: 8.4.0-rc2
+        version: 8.4.0-rc2
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -3648,6 +3651,9 @@ packages:
 
   pure-rand@6.1.0:
     resolution: {integrity: sha512-bVWawvoZoBYpp6yIoQtQXHZjmz35RSVHnUOTefl8Vcjr8snTPY1wnpSPMWekcFwbxI6gtmT7rSYPFvz71ldiOA==}
+
+  pusher-js@8.4.0-rc2:
+    resolution: {integrity: sha512-d87GjOEEl9QgO5BWmViSqW0LOzPvybvX6WA9zLUstNdB57jVJuR27zHkRnrav2a3+zAMlHbP2Og8wug+rG8T+g==}
 
   pusher@5.2.0:
     resolution: {integrity: sha512-F6LNiZyJsIkoHLz+YurjKZ1HH8V1/cMggn4k97kihjP3uTvm0P4mZzSFeHOWIy+PlJ2VInJBhUFJBYLsFR5cjg==}
@@ -9009,6 +9015,10 @@ snapshots:
   punycode@2.3.1: {}
 
   pure-rand@6.1.0: {}
+
+  pusher-js@8.4.0-rc2:
+    dependencies:
+      tweetnacl: 1.0.3
 
   pusher@5.2.0:
     dependencies:
