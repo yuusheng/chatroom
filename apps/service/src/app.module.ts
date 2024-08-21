@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common'
 import { AppController } from './app.controller'
 import { PusherService } from './pusher/pusher.service'
-import { ChatModule } from './chat/chat.gateway.module'
+import { ChatModule } from './chat/chat.module'
 
 @Module({
   imports: [ChatModule],
