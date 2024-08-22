@@ -1,5 +1,5 @@
 
-import { Injectable, Get, Header, Param, type OnModuleDestroy, type OnModuleInit } from "@nestjs/common";
+import { Injectable, type OnModuleDestroy, type OnModuleInit } from "@nestjs/common";
 import fse from 'fs-extra'
 import { resolve } from "node:path";
 import { safeJSONParse } from "utils";
@@ -29,9 +29,7 @@ export class UserService implements OnModuleDestroy, OnModuleInit {
     fse.writeFileSync(FILE_STORAGE_PATH, JSON.stringify(this.avatarCache))
   }
 
-  @Get('user/avatar')
-  @Header('content-type', 'text/plaintext')
-  avatar(@Param('name') name: string): string {
+  avatar(name: string) {
     const avatarSvg = this.generateAvatar(name)
     this.avatarCache[name] = avatarSvg
     return avatarSvg
