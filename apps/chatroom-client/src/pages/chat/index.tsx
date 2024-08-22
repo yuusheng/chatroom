@@ -1,49 +1,23 @@
-import { useState, type FormEvent } from "react"
-import { useChat } from "~/hooks/useSocket";
+import { onlineCountAtom } from "~/atoms";
+import { useAtomValue } from "jotai";
+import ChatRoom from "./ChatRoom";
 
 function Chat() {
-  const [username, setUsername] = useState("")
-  const [message, setMessage] = useState("")
-
-  const { onlineCount, send, messages } = useChat()
-
-  const submit = async (e: FormEvent) => {
-    e.preventDefault()
-
-    send({
-      message,
-      username,
-    })
-    setMessage("")
-  }
+  const onlineCount = useAtomValue(onlineCountAtom);
 
   return (
     <>
-      <div>{onlineCount}</div>
-      <label htmlFor="username">User Name: </label>
-      <input
-        id="username"
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-
-      <ul>
-        {messages.map((message) => (
-          <li key={JSON.stringify(message)}>{JSON.stringify(message)}</li>
-        ))}
-      </ul>
-
-      <form onSubmit={submit}>
-        <label htmlFor="message">message: </label>
-        <input
-          id="message"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        />
-      </form>
+      <header className="w-full h-10 py-1">
+        <div className="w-16 px-4 py-0.5 flex rounded-3xl bg-lime-200 items-center justify-between">
+          <div className="h-1.5 w-1.5 bg-green-600 rounded-full"></div>
+          <span>{onlineCount}</span>
+        </div>
+      </header>
+      <main>
+        <ChatRoom />
+      </main>
     </>
-  )
+  );
 }
 
-export default Chat
+export default Chat;

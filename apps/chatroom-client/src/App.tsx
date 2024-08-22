@@ -1,8 +1,7 @@
-import "./App.css";
 import Chat from "./pages/chat";
 
 function App() {
-  return <Chat></Chat>;
+  return <Chat />;
 }
 
 export default App;

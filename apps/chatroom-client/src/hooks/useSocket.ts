@@ -1,5 +1,7 @@
+import { useSetAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
+import { onlineCountAtom } from '~/atoms'
 
 // "undefined" means the URL will be computed from the `window.location` object
 const URL = 'http://localhost:3002';
@@ -12,7 +14,7 @@ interface Message {
 }
 
 export function useChat() {
-  const [onlineCount, setOnlineCount] = useState(0)
+  const setOnlineCount = useSetAtom(onlineCountAtom)
   const [messages, setMessages] = useState<Message[]>([])
 
   useEffect(() => {
@@ -40,7 +42,6 @@ export function useChat() {
 
   return {
     send,
-    onlineCount,
     messages
   }
 }
