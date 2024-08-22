@@ -16,6 +16,8 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       message: `New user joined the chat: ${client.id}`,
       count: this.count
     })
+
+    this.server.emit('online-count', this.count)
   }
 
   handleDisconnect(client: Socket) {
@@ -26,10 +28,16 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
       message: `User leave the chat: ${client.id}`,
       count: this.count
     })
+    this.server.emit('online-count', this.count)
   }
 
   @SubscribeMessage('ping')
-  handleMessage(client: Socket, message: any) {
+  handlePing(client: Socket, message: any) {
     client.emit('pong')
+  }
+
+  @SubscribeMessage('message')
+  handleMessage(client: Socket, message: any) {
+    client.broadcast.emit('message', message)
   }
 }

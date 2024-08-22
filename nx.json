@@ -16,7 +16,7 @@
       "{workspaceRoot}/.github/workflows/ci.yml"
     ]
   },
-  "nxCloudAccessToken": "OTBkYTUyNjAtNmExNS00NmY5LTllNDAtYzc5MzkzZmJhNmEyfHJlYWQtd3JpdGU=",
+  "neverConnectToCloud": true,
   "plugins": [
     {
       "plugin": "@nx/vite/plugin",
