@@ -1,8 +1,8 @@
 import { Controller, Get } from '@nestjs/common'
-import { ChatGateway } from './chat/chat.gateway'
+import { ChatGateway } from './chat.gateway'
 
 @Controller('api')
-export class AppController {
+export class ChatController {
   constructor(
     private wsServer: ChatGateway
   ) {}

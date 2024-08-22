@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common'
-import { AppController } from './app.controller'
 import { ChatModule } from './chat/chat.module'
+import { UserModule } from 'user/user.module'
 
 @Module({
-  imports: [ChatModule],
-  controllers: [AppController],
+  imports: [ChatModule, UserModule],
   providers: [],
 })
 export class AppModule  {}

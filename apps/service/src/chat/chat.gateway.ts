@@ -1,11 +1,10 @@
 import { SubscribeMessage, WebSocketGateway, WebSocketServer, type OnGatewayConnection, type OnGatewayDisconnect } from '@nestjs/websockets';
 import { Socket, type Server } from 'socket.io'
 
-
 @WebSocketGateway(3002, { cors: {origin: '*' }})
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()
-  private server: Server
+  private server!: Server
   count = 0
 
   handleConnection(client: Socket) {
@@ -32,7 +31,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   }
 
   @SubscribeMessage('ping')
-  handlePing(client: Socket, message: any) {
+  handlePing(client: Socket) {
     client.emit('pong')
   }
 
