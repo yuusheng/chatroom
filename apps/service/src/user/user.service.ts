@@ -26,7 +26,7 @@ export class UserService implements OnModuleDestroy, OnModuleInit {
   }
 
   onModuleDestroy() {
-    fse.writeFile(FILE_STORAGE_PATH, JSON.stringify(this.avatarCache))
+    fse.writeFileSync(FILE_STORAGE_PATH, JSON.stringify(this.avatarCache))
   }
 
   @Get('user/avatar')
