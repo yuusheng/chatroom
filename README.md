@@ -11,6 +11,6 @@ This is a chatroom showcase.
 ## Todos
 
 [ ] frontend basic setup
-[ ] using chat module to replace pusher
+[x] using chat module to replace pusher
 [ ] total online count
 [ ] eslint setup
