@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react"
 import { useChat } from "~/hooks/useSocket";
+import { Message } from "./Message";
 
 function ChatRoom() {
   const [username, setUsername] = useState("")
@@ -29,7 +30,7 @@ function ChatRoom() {
 
       <ul>
         {messages.map((message) => (
-          <li key={JSON.stringify(message)}>{JSON.stringify(message)}</li>
+          <Message key={JSON.stringify(message)} message={message} />
         ))}
       </ul>
 
