@@ -9,9 +9,10 @@ const URL = 'http://localhost:3002';
 
 const socket = io(URL);
 
-interface Message {
+export interface Message {
   username: string;
   message: string;
+  avatar?: string;
 }
 
 export function useChat() {
@@ -45,7 +46,7 @@ export function useChat() {
 
   function send(message: Message) {
     socket.emit('message', message)
-    setMessages([...messages, message])
+    setMessages([...messages, { ...message, avatar: `http://localhost:3000/api/user/avatar?name=${'user'}` }])
   }
 
   return {

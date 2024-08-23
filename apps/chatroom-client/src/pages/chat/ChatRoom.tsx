@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react"
-import { useChat } from "~/hooks/useSocket";
+import { useChat } from "~/hooks/useChat";
 import { Message } from "./Message";
 
 function ChatRoom() {
