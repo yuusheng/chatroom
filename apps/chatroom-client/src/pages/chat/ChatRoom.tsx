@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from "react"
 import { useChat } from "~/hooks/useChat";
 import { Message } from "./Message";
+import { Input } from "~/components/ui/input";
 
 function ChatRoom() {
   const [username, setUsername] = useState("")
@@ -19,30 +20,19 @@ function ChatRoom() {
   }
 
   return (
-    <>
-      <label htmlFor="username">User Name: </label>
-      <input
-        id="username"
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
+    <div className="flex flex-col h-full">
+      <div className="overflow-auto scrollbar-hidden">
+        <div className="flex flex-col gap-4 mb-10">
+          {messages.map((message) => (
+            <Message key={JSON.stringify(message)} message={message} />
+          ))}
+        </div>
+      </div>
 
-      <ul>
-        {messages.map((message) => (
-          <Message key={JSON.stringify(message)} message={message} />
-        ))}
-      </ul>
-
-      <form onSubmit={submit}>
-        <label htmlFor="message">message: </label>
-        <input
-          id="message"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        />
+      <form onSubmit={submit} className="w-full fixed bottom-0 left-0 px-40">
+        <Input placeholder="Input your message, `Enter` to send." value={message} onChange={(e) => setMessage(e.target.value)} />
       </form>
-    </>
+    </div>
   )
 }
 
