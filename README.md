@@ -10,7 +10,9 @@ This is a chatroom showcase.
 
 ## Todos
 
-[ ] frontend basic setup
-[x] using chat module to replace pusher
-[ ] total online count
-[ ] eslint setup
+- [ ] frontend basic setup
+- [ ] clark
+- [ ] eslint setup
+
+- [x] using chat module to replace pusher
+- [x] total online count
