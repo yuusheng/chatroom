@@ -11,6 +11,5 @@ import { DatabaseModule } from './database/database.module';
     ConfigModule.forRoot(),
     DatabaseModule
   ],
-  providers: [],
 })
 export class AppModule  {}

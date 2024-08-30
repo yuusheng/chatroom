@@ -6,7 +6,7 @@ export const usersTable = pgTable('users', {
   email: text('email').notNull().unique(),
 });
 
-export const postsTable = pgTable('messages', {
+export const messageTable = pgTable('messages', {
   id: serial('id').primaryKey(),
   content: text('content').notNull(),
   userId: integer('user_id')
@@ -17,5 +17,5 @@ export const postsTable = pgTable('messages', {
 
 export type InsertUser = typeof usersTable.$inferInsert;
 export type SelectUser = typeof usersTable.$inferSelect;
-export type InsertPost = typeof postsTable.$inferInsert;
-export type SelectPost = typeof postsTable.$inferSelect;
+export type InsertPost = typeof messageTable.$inferInsert;
+export type SelectPost = typeof messageTable.$inferSelect;
