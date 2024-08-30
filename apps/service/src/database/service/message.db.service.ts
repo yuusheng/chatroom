@@ -6,8 +6,9 @@ import { eq } from "drizzle-orm";
 
 @Injectable()
 export class MessageDBService {
-  addMessage(message: MessageDto) {
-    db.insert(messageTable).values(message)
+  async addMessage(message: MessageDto) {
+    console.log(message)
+    await db.insert(messageTable).values(message)
   }
 
   deleteMessage(messageId: string) {

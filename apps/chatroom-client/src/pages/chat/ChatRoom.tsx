@@ -12,10 +12,7 @@ function ChatRoom() {
   const submit = async (e: FormEvent) => {
     e.preventDefault()
 
-    send({
-      message,
-      username,
-    })
+    send(message)
     setMessage("")
   }
 

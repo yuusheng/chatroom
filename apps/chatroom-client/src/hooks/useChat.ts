@@ -44,9 +44,9 @@ export function useChat() {
     };
   }, [showUserJoin]);
 
-  function send(message: Message) {
+  function send(message: string) {
     socket.emit('message', message)
-    setMessages([...messages, { ...message, avatar: `http://localhost:3000/api/user/avatar?name=${'user'}` }])
+    setMessages([...messages, { message, avatar: `http://localhost:3000/api/user/avatar?name=${'user'}` }])
   }
 
   return {
