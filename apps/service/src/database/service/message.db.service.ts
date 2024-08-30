@@ -19,6 +19,6 @@ export class MessageDBService {
     return db
       .select()
       .from(messageTable)
-      .leftJoin(usersTable, eq(usersTable.id, messageTable.id))
+      .leftJoin(usersTable, eq(usersTable.id, messageTable.userId))
   }
 }
