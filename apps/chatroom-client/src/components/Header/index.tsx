@@ -3,6 +3,8 @@ import { useAtom, useAtomValue } from "jotai";
 import { Switch } from "~/components/ui/switch";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip";
 
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
+
 export function Header() {
   const onlineCount = useAtomValue(onlineCountAtom);
   const [showUserJoin, setShowUserJoin] = useAtom(showUserJoinedAtom)
@@ -29,6 +31,15 @@ export function Header() {
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
+
+          <SignedOut>
+            <SignInButton>
+              Login to your account
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
         </div>
       </div>
     </header>

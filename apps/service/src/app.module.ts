@@ -5,7 +5,9 @@ import { ConfigModule } from '@nestjs/config';
 import { DatabaseModule } from './database/database.module';
 
 @Module({
-  imports: [ChatModule, UserModule,
+  imports: [
+    ChatModule,
+    UserModule,
     ConfigModule.forRoot(),
     DatabaseModule
   ],
