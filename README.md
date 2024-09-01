@@ -16,3 +16,9 @@ This is a chatroom showcase.
 
 - [x] using chat module to replace pusher
 - [x] total online count
+- [x] drizzle orm & pg sql
+
+## Usage
+
+- [neno](https://neon.tech/home)
+- [drizzle orm](https://orm.drizzle.team/)

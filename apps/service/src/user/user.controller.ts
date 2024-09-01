@@ -2,7 +2,7 @@ import { Controller, Get, Header, Post, Query } from "@nestjs/common";
 import { UserService } from "./user.service";
 import { UserDBService } from "database/service/user.db.service";
 
-@Controller('api/user')
+@Controller('user')
 export class UserController {
   avatarCache: Record<string, string> = {}
 

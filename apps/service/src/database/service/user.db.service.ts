@@ -1,11 +1,11 @@
 import { Injectable } from "@nestjs/common";
 import { db } from "database/drizzle";
-import type { UserDto } from "database/dto/user.dto";
-import { usersTable } from "database/schema";
+import { insertUsersSchema, usersTable, type InsertUser } from "database/schema";
 
 @Injectable()
 export class UserDBService {
-  async createUser(user: UserDto) {
+  async createUser(user: InsertUser) {
+    insertUsersSchema.parse(user)
     await db.insert(usersTable).values(user)
   }
 

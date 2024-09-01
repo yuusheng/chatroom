@@ -1,14 +1,14 @@
 import { Injectable } from "@nestjs/common";
 import { db } from "database/drizzle";
-import type { MessageDto } from "database/dto/message.dto";
-import { messageTable, usersTable } from "database/schema";
+import { insertMessageSchema, messageTable, usersTable, type InsertMessage } from "database/schema";
 import { eq } from "drizzle-orm";
 
 @Injectable()
 export class MessageDBService {
-  async addMessage(message: MessageDto) {
-    console.log(message)
+  async addMessage(message: InsertMessage) {
+    message = insertMessageSchema.parse(message)
     await db.insert(messageTable).values(message)
+    return message
   }
 
   deleteMessage(messageId: string) {

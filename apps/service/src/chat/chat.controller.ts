@@ -2,7 +2,7 @@ import { Controller, Get } from '@nestjs/common'
 import { ChatGateway } from './chat.gateway'
 import { MessageDBService } from 'database/service/message.db.service'
 
-@Controller('api')
+@Controller()
 export class ChatController {
   constructor(
     private readonly wsServer: ChatGateway,
