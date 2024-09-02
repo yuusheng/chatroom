@@ -12,8 +12,8 @@ This is a chatroom showcase.
 
 - [ ] frontend basic setup
 - [ ] clark
-- [ ] eslint setup
 
+- [x] eslint setup
 - [x] using chat module to replace pusher
 - [x] total online count
 - [x] drizzle orm & pg sql
