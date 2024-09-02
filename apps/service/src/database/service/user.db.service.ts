@@ -1,6 +1,6 @@
-import { Injectable } from "@nestjs/common";
-import { db } from "database/drizzle";
-import { insertUsersSchema, usersTable, type InsertUser } from "database/schema";
+import { Injectable } from '@nestjs/common'
+import { db } from 'database/drizzle'
+import { type InsertUser, insertUsersSchema, usersTable } from 'database/schema'
 
 @Injectable()
 export class UserDBService {

@@ -1,6 +1,5 @@
-import { atom } from "jotai";
+import { atom } from 'jotai'
 import { atomWithStorage } from 'jotai/utils'
-
 
 export const onlineCountAtom = atom(0)
 

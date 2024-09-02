@@ -1,12 +1,8 @@
-import { onlineCountAtom, showUserJoinedAtom } from "~/atoms";
-import { useAtom, useAtomValue } from "jotai";
-import { Switch } from "~/components/ui/switch";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../ui/tooltip";
-
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/clerk-react";
+import { useAtom, useAtomValue } from 'jotai'
+import { onlineCountAtom, showUserJoinedAtom } from '~/atoms'
 
 export function Header() {
-  const onlineCount = useAtomValue(onlineCountAtom);
+  const onlineCount = useAtomValue(onlineCountAtom)
   const [showUserJoin, setShowUserJoin] = useAtom(showUserJoinedAtom)
 
   return (
@@ -23,7 +19,7 @@ export function Header() {
         <div className="flex gap-2 items-center">
           <TooltipProvider>
             <Tooltip>
-              <TooltipTrigger >
+              <TooltipTrigger>
                 <Switch checked={showUserJoin} onCheckedChange={setShowUserJoin} />
               </TooltipTrigger>
               <TooltipContent>

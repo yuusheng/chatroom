@@ -1,18 +1,18 @@
-import { useAtomValue, useSetAtom } from 'jotai';
-import { useEffect, useState } from 'react';
-import { io } from 'socket.io-client';
+import { useAtomValue, useSetAtom } from 'jotai'
+import { useEffect, useState } from 'react'
+import { io } from 'socket.io-client'
+import { toast } from 'sonner'
 import { onlineCountAtom, showUserJoinedAtom } from '~/atoms'
-import { toast } from "sonner"
 
 // "undefined" means the URL will be computed from the `window.location` object
-const URL = 'http://localhost:3002';
+const URL = 'http://localhost:3002'
 
-const socket = io(URL);
+const socket = io(URL)
 
 export interface Message {
-  username: string;
-  message: string;
-  avatar?: string;
+  username: string
+  message: string
+  avatar?: string
 }
 
 export function useChat() {
@@ -25,9 +25,9 @@ export function useChat() {
       setOnlineCount(count)
     }
     const handleMessageComing = (message: Message) => {
-      setMessages((prev) => [...prev, message])
+      setMessages(prev => [...prev, message])
     }
-    const handleNewGuest = (guest: { }) => {
+    const handleNewGuest = (guest: any) => {
       if (showUserJoin) {
         toast('New guest coming', guest)
       }
@@ -41,8 +41,8 @@ export function useChat() {
       socket.off('online-count', handleOnlineCount)
       socket.off('message', handleMessageComing)
       socket.off('user-joined', handleNewGuest)
-    };
-  }, [showUserJoin]);
+    }
+  }, [showUserJoin])
 
   function send(message: string) {
     socket.emit('message', message)
@@ -51,6 +51,6 @@ export function useChat() {
 
   return {
     send,
-    messages
+    messages,
   }
 }

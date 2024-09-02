@@ -1,12 +1,12 @@
 import { Controller, Get } from '@nestjs/common'
-import { ChatGateway } from './chat.gateway'
-import { MessageDBService } from 'database/service/message.db.service'
+import type { MessageDBService } from 'database/service/message.db.service'
+import type { ChatGateway } from './chat.gateway'
 
 @Controller()
 export class ChatController {
   constructor(
     private readonly wsServer: ChatGateway,
-    private readonly messageService: MessageDBService
+    private readonly messageService: MessageDBService,
   ) {}
 
   @Get('online/count')

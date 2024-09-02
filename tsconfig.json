@@ -1,12 +1,12 @@
 {
   "extends": "./common-tsconfig.json",
   "compilerOptions": {
+    "incremental": true,
+    "jsx": "react",
     "allowJs": true,
     "strict": true,
-    "incremental": true,
-    "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react"
+    "isolatedModules": true
   },
   "exclude": ["**/node_modules", "../enterprise", "./packages/api-client"]
 }

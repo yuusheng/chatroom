@@ -1,6 +1,3 @@
-import { Header } from "~/components/Header";
-import ChatRoom from "./ChatRoom";
-
 function Chat() {
   return (
     <div className="flex flex-col h-screen overflow-hidden">
@@ -10,7 +7,7 @@ function Chat() {
         <ChatRoom />
       </main>
     </div>
-  );
+  )
 }
 
-export default Chat;
+export default Chat

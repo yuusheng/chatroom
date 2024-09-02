@@ -1,7 +1,7 @@
-import { Injectable } from "@nestjs/common";
-import { db } from "database/drizzle";
-import { insertMessageSchema, messageTable, usersTable, type InsertMessage } from "database/schema";
-import { eq } from "drizzle-orm";
+import { Injectable } from '@nestjs/common'
+import { db } from 'database/drizzle'
+import { type InsertMessage, insertMessageSchema, messageTable, usersTable } from 'database/schema'
+import { eq } from 'drizzle-orm'
 
 @Injectable()
 export class MessageDBService {

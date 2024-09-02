@@ -1,7 +1,7 @@
-import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
-import type { Message } from "~/hooks/useChat";
+import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
+import type { Message } from '~/hooks/useChat'
 
-export function Message({ message }: { message: Message }) {
+export function MessageBubble({ message }: { message: Message }) {
   return (
     <div className="flex gap-3">
       <Avatar>
@@ -29,5 +29,5 @@ export function Message({ message }: { message: Message }) {
         </span>
       </div>
     </div>
-  );
+  )
 }

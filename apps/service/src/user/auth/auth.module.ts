@@ -1,7 +1,7 @@
-import { Module } from '@nestjs/common';
-import { PassportModule } from '@nestjs/passport';
+import { Module } from '@nestjs/common'
+import { PassportModule } from '@nestjs/passport'
 
 @Module({
-  imports: [PassportModule]
+  imports: [PassportModule],
 })
 export class AuthModule {}

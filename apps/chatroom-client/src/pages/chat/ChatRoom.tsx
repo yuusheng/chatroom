@@ -1,11 +1,10 @@
-import { useState, type FormEvent } from "react"
-import { useChat } from "~/hooks/useChat";
-import { Message } from "./Message";
-import { Input } from "~/components/ui/input";
+import { type FormEvent, useState } from 'react'
+import { MessageBubble } from './Message'
+import { useChat } from '~/hooks/useChat'
+import { Input } from '~/components/ui/input'
 
 function ChatRoom() {
-  const [username, setUsername] = useState("")
-  const [message, setMessage] = useState("")
+  const [message, setMessage] = useState('')
 
   const { send, messages } = useChat()
 
@@ -13,21 +12,21 @@ function ChatRoom() {
     e.preventDefault()
 
     send(message)
-    setMessage("")
+    setMessage('')
   }
 
   return (
     <div className="flex flex-col h-full">
       <div className="overflow-auto scrollbar-hidden">
         <div className="flex flex-col gap-4 mb-10">
-          {messages.map((message) => (
-            <Message key={JSON.stringify(message)} message={message} />
+          {messages.map(message => (
+            <MessageBubble key={JSON.stringify(message)} message={message} />
           ))}
         </div>
       </div>
 
       <form onSubmit={submit} className="w-full fixed bottom-0 left-0 px-40">
-        <Input placeholder="Input your message, `Enter` to send." value={message} onChange={(e) => setMessage(e.target.value)} />
+        <Input placeholder="Input your message, `Enter` to send." value={message} onChange={e => setMessage(e.target.value)} />
       </form>
     </div>
   )

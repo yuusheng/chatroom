@@ -1,8 +1,10 @@
-import { Injectable, type OnModuleDestroy, type OnModuleInit } from "@nestjs/common";
+import { resolve } from 'node:path'
+import process from 'node:process'
+import { Injectable, type OnModuleDestroy, type OnModuleInit } from '@nestjs/common'
 import fse from 'fs-extra'
-import { resolve } from "node:path";
-import { safeJSONParse } from "utils";
+import { safeJSONParse } from 'utils'
 
+// eslint-disable-next-line ts/no-require-imports
 const multiavatar = require('@multiavatar/multiavatar')
 
 const FILE_STORAGE_PATH = resolve(process.cwd(), '.cache/avatar.json')
@@ -18,7 +20,7 @@ export class UserService implements OnModuleDestroy, OnModuleInit {
   async onModuleInit() {
     await fse.ensureFile(FILE_STORAGE_PATH)
     const storage = safeJSONParse(
-      await fse.readFile(FILE_STORAGE_PATH, 'utf-8')
+      await fse.readFile(FILE_STORAGE_PATH, 'utf-8'),
     )
 
     this.avatarCache = Object.assign({}, storage)
