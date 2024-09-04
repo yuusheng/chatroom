@@ -7,7 +7,7 @@
   "scripts": {
     "build": "nx run-many -t build",
     "serve": "nx run service:dev",
-    "dev": "nx run chatroom-client:dev",
+    "dev": "nx run client:dev",
     "lint": "eslint . --fix"
   },
   "devDependencies": {

@@ -1,13 +1,14 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import Layout from './layout/index.tsx'
 import Chat from './pages/chat/index.tsx'
+
+import './index.css'
 
 const router = createBrowserRouter([
   {
-    element: <App />,
+    element: <Layout />,
     children: [
       { path: '/', element: <Chat /> },
     ],
