@@ -1,4 +1,7 @@
 import { useAtom, useAtomValue } from 'jotai'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@radix-ui/react-tooltip'
+import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/clerk-react'
+import { Switch } from '@radix-ui/react-switch'
 import { onlineCountAtom, showUserJoinedAtom } from '~/atoms'
 
 export function Header() {
