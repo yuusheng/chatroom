@@ -1,6 +1,6 @@
 import { Controller, Get, Header, Post, Query } from '@nestjs/common'
-import type { UserDBService } from 'database/service/user.db.service'
-import type { UserService } from './user.service'
+import { UserDBService } from 'database/service/user.db.service'
+import { UserService } from './user.service'
 
 @Controller('user')
 export class UserController {
@@ -9,7 +9,7 @@ export class UserController {
   constructor(
     private readonly userService: UserService,
     private readonly userDBService: UserDBService,
-  ) {}
+  ) { }
 
   @Get('avatar')
   @Header('Content-Type', 'image/svg+xml')
