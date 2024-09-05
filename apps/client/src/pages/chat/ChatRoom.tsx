@@ -25,7 +25,7 @@ function ChatRoom() {
         </div>
       </div>
 
-      <form onSubmit={submit} className="w-full fixed bottom-0 left-0 px-40">
+      <form onSubmit={submit} className="w-full fixed bottom-10 left-0 px-40">
         <Input placeholder="Input your message, `Enter` to send." value={message} onChange={e => setMessage(e.target.value)} />
       </form>
     </div>

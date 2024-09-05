@@ -1,15 +1,17 @@
 import { useAtom, useAtomValue } from 'jotai'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@radix-ui/react-tooltip'
 import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/clerk-react'
-import { Switch } from '@radix-ui/react-switch'
+import { Button } from '../ui/button'
+import { Switch } from '~/components/ui/switch'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '~/components/ui/tooltip'
 import { onlineCountAtom, showUserJoinedAtom } from '~/atoms'
+import { url } from '~/utils/url'
 
 export function Header() {
   const onlineCount = useAtomValue(onlineCountAtom)
   const [showUserJoin, setShowUserJoin] = useAtom(showUserJoinedAtom)
 
   return (
-    <header className="w-full h-10 py-2 px-5 flex items-center">
+    <header className="w-full py-2 px-5 flex items-center">
       <div className="flex-1" />
       <div className="flex items-center gap-3">
         <div className="w-14 h-7 px-4 py-0.5 flex rounded-3xl bg-lime-200/30  items-center justify-between">
@@ -19,28 +21,42 @@ export function Header() {
           <span className="">{onlineCount}</span>
         </div>
 
-        <div className="flex gap-2 items-center">
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger>
-                <Switch checked={showUserJoin} onCheckedChange={setShowUserJoin} />
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>User Join Toast</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Switch
+                data-state={showUserJoin ? 'checked' : 'unchecked'}
+                checked={showUserJoin}
+                onCheckedChange={setShowUserJoin}
+              />
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>User Join Toast</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
 
-          <SignedOut>
-            <SignInButton>
-              Login to your account
-            </SignInButton>
-          </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-        </div>
+        <UserInfo />
       </div>
     </header>
+  )
+}
+
+function UserInfo() {
+  const path = window.location.pathname
+
+  return (
+    <>
+      <SignedOut>
+        <SignInButton mode="modal" forceRedirectUrl={url(path).href}>
+          <Button variant="outline">
+            Login
+          </Button>
+        </SignInButton>
+      </SignedOut>
+      <SignedIn>
+        <UserButton />
+      </SignedIn>
+    </>
   )
 }

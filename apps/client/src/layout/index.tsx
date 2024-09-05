@@ -12,9 +12,7 @@ if (!PUBLISHABLE_KEY) {
 function App() {
   return (
     <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
-      <main>
-        <Outlet />
-      </main>
+      <Outlet />
       <Toaster />
     </ClerkProvider>
   )
