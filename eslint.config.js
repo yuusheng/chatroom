@@ -17,10 +17,9 @@ export default antfu(
       'drizzle/enforce-update-with-where': ['error', { drizzleObjectName: 'db' }],
     },
   },
-  {
-    files: ['**/service/*.service.ts'],
-    rules: {
-      'ts/consistent-type-imports': 'off',
-    },
+).override('antfu/typescript/rules', {
+  files: ['**/service/*.service.ts', '**/service/*.gateway.ts'],
+  rules: {
+    'ts/consistent-type-imports': 'off',
   },
-)
+})
