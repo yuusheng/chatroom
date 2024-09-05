@@ -18,7 +18,7 @@ export default antfu(
     },
   },
   {
-    files: ['**/service/*.ts'],
+    files: ['**/service/*.service.ts'],
     rules: {
       'ts/consistent-type-imports': 'off',
     },
