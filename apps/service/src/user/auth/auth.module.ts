@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common'
-import { PassportModule } from '@nestjs/passport'
+import { AuthGuard } from './auth.guard'
 
 @Module({
-  imports: [PassportModule],
+  exports: [AuthGuard],
 })
-export class AuthModule {}
+export class AuthModule { }
