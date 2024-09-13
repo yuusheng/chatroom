@@ -1,5 +1,6 @@
-import { Controller, Get } from '@nestjs/common'
+import { Controller, Get, Post, Req } from '@nestjs/common'
 import { MessageDBService } from 'database/service/message.db.service'
+import type { Request } from 'express'
 import { ChatGateway } from './chat.gateway'
 
 @Controller()
@@ -17,5 +18,11 @@ export class ChatController {
   @Get('messages')
   findAll() {
     return this.messageService.findAll()
+  }
+
+  @Post('messages')
+  postMessage(@Req() request: Request) {
+    console.log(request.params)
+    return 'hello world'
   }
 }

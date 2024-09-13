@@ -6,13 +6,17 @@ import { Input } from '~/components/ui/input'
 function ChatRoom() {
   const [message, setMessage] = useState('')
 
-  const { send, messages } = useChat()
+  const { send, messages, isLoading } = useChat()
 
   const submit = async (e: FormEvent) => {
     e.preventDefault()
 
     send(message)
     setMessage('')
+  }
+
+  if (isLoading) {
+    return 'loading...'
   }
 
   return (

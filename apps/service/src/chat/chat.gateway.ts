@@ -1,6 +1,8 @@
 import { type OnGatewayConnection, type OnGatewayDisconnect, SubscribeMessage, WebSocketGateway, WebSocketServer } from '@nestjs/websockets'
 import type { Server, Socket } from 'socket.io'
-import { ChatService } from './chat.service'
+// import { UseGuards } from '@nestjs/common'
+// import { AuthGuard } from 'user/auth/auth.guard'
+// import { ChatService } from './chat.service'
 
 @WebSocketGateway(3002, { cors: { origin: '*' } })
 export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
@@ -10,7 +12,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   count = 0
 
   constructor(
-    private readonly chatService: ChatService,
+    // private readonly chatService: ChatService,
   ) { }
 
   handleConnection(client: Socket) {
@@ -43,13 +45,14 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     client.emit('pong')
   }
 
-  @SubscribeMessage('message')
-  async handleMessage(client: Socket, message: any) {
-    client.broadcast.emit('message', {
-      ...message,
-      avatar: `http://localhost:3000/api/user/avatar?name=${message.username || client.id}`,
-    })
-
-    await this.chatService.newMessage(1, message)
-  }
+  // @UseGuards(AuthGuard)
+  // @SubscribeMessage('message')
+  // async handleMessage(client: Socket, message: any) {
+  //   client.broadcast.emit('message', {
+  //     ...message,
+  //     avatar: `http://localhost:3000/api/user/avatar?name=${message.username || client.id}`,
+  //   })
+  //
+  //   await this.chatService.newMessage(1, message)
+  // }
 }

@@ -1,11 +1,13 @@
+import { useUser } from '@clerk/clerk-react'
+import { useQuery } from '@tanstack/react-query'
 import { useAtomValue, useSetAtom } from 'jotai'
 import { useEffect, useState } from 'react'
 import { io } from 'socket.io-client'
 import { toast } from 'sonner'
 import { onlineCountAtom, showUserJoinedAtom } from '~/atoms'
+import { getAllMessages } from '~/request'
 
-// "undefined" means the URL will be computed from the `window.location` object
-const URL = 'http://localhost:3002'
+const URL = import.meta.env.VITE_API_WS_HOST
 
 const socket = io(URL)
 
@@ -17,8 +19,16 @@ export interface Message {
 
 export function useChat() {
   const setOnlineCount = useSetAtom(onlineCountAtom)
+  const { data, isLoading } = useQuery({
+    queryKey: ['messages'],
+    queryFn: getAllMessages,
+  })
   const [messages, setMessages] = useState<Message[]>([])
   const showUserJoin = useAtomValue(showUserJoinedAtom)
+  useEffect(() => {
+    console.log(data)
+    // setMessages(data?.data as any || [])
+  }, [data])
 
   useEffect(() => {
     const handleOnlineCount = (count: number) => {
@@ -44,13 +54,18 @@ export function useChat() {
     }
   }, [showUserJoin])
 
+  const { user } = useUser()
   function send(message: string) {
-    socket.emit('message', message)
-    setMessages([...messages, { message, avatar: `http://localhost:3000/api/user/avatar?name=${'user'}` }])
+    if (!user) {
+      toast.error('Please Login first')
+      return
+    }
+    console.log(user, message)
   }
 
   return {
     send,
     messages,
+    isLoading,
   }
 }
