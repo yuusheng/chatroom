@@ -12,7 +12,7 @@ export const usersTable = pgTable('users', {
 export const messageTable = pgTable('messages', {
   id: serial('id').primaryKey(),
   content: text('content').notNull(),
-  userId: text('user_id').notNull(),
+  userId: text('user_id').notNull().references(() => usersTable.id),
   createdAt: timestamp('created_at').notNull().defaultNow(),
 })
 

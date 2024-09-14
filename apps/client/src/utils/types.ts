@@ -5,9 +5,6 @@ export const userSchema = z.object({
   hasImage: z.boolean(),
   imageUrl: z.string().optional(),
   firstName: z.string(),
-  primaryEmailAddress: z.object({
-    emailAddress: z.string(),
-  }).optional(),
 }).transform(o => ({
   id: o.id,
   avatar: o.hasImage && o.imageUrl ? o.imageUrl : `http://`,
