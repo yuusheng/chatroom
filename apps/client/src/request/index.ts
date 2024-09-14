@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { type AddMessage, Message, addMessageSchema, messageSchema, messagesSchema } from '~/utils'
+import type { AddMessage, Message } from '~/utils'
+import { addMessageSchema } from '~/utils'
 
 const request = axios.create({
   baseURL: import.meta.env.VITE_API_HOST,

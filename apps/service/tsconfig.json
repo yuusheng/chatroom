@@ -4,6 +4,11 @@
     "target": "es2020",
     "experimentalDecorators": true,
     "baseUrl": "./src",
+    "paths": {
+      "*": [
+        "*"
+      ]
+    },
     "types": [
       "jest",
       "node"
@@ -21,15 +26,10 @@
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "outDir": "./dist",
-    "sourceMap": true,
     "declaration": false,
     "declarationMap": false,
-    "paths": {
-      "*": [
-        "*"
-      ]
-    },
+    "outDir": "./dist",
+    "sourceMap": true
   },
   "exclude": [
     "node_modules",

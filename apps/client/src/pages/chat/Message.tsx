@@ -1,6 +1,6 @@
 import dayjs from 'dayjs'
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
-import { Message } from '~/utils'
+import type { Message } from '~/utils'
 
 export function MessageBubble({ message }: { message: Message }) {
   return (
