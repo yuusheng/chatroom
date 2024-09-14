@@ -7,7 +7,7 @@ export class ChatService {
     private readonly messageDBService: MessageDBService,
   ) { }
 
-  async newMessage(userId: number, content: string) {
+  async newMessage(userId: string, content: string) {
     await this.messageDBService.addMessage({ userId, content })
   }
 }

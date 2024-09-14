@@ -1,8 +1,8 @@
-import { integer, pgTable, serial, text, timestamp } from 'drizzle-orm/pg-core'
+import { pgTable, serial, text, timestamp } from 'drizzle-orm/pg-core'
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod'
 
 export const usersTable = pgTable('users', {
-  id: serial('id').primaryKey(),
+  id: text('id').primaryKey(),
   nickName: text('nick_name').notNull(),
   email: text('email').notNull().unique(),
   avatar: text('avatar').default(''),
@@ -12,9 +12,7 @@ export const usersTable = pgTable('users', {
 export const messageTable = pgTable('messages', {
   id: serial('id').primaryKey(),
   content: text('content').notNull(),
-  userId: integer('user_id')
-    .notNull()
-    .references(() => usersTable.id, { onDelete: 'cascade' }),
+  userId: text('user_id').notNull(),
   createdAt: timestamp('created_at').notNull().defaultNow(),
 })
 

@@ -1,6 +1,8 @@
-import { Controller, Get, Post, Req } from '@nestjs/common'
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common'
 import { MessageDBService } from 'database/service/message.db.service'
-import type { Request } from 'express'
+import { AuthGuard } from 'user/auth/auth.guard'
+import { InsertMessage } from 'database/schema'
+import { UserService } from 'user/user.service'
 import { ChatGateway } from './chat.gateway'
 
 @Controller()
@@ -8,6 +10,7 @@ export class ChatController {
   constructor(
     private readonly wsServer: ChatGateway,
     private readonly messageService: MessageDBService,
+    private readonly userService: UserService,
   ) { }
 
   @Get('online/count')
@@ -16,13 +19,22 @@ export class ChatController {
   }
 
   @Get('messages')
-  findAll() {
-    return this.messageService.findAll()
+  async findAll() {
+    const messages = await this.messageService.findAll()
+
+    return Promise.all(messages.map(async (message) => {
+      const user = await this.userService.getUser(message.userId)
+      return {
+        ...message,
+        user,
+      }
+    }))
   }
 
-  @Post('messages')
-  postMessage(@Req() request: Request) {
-    console.log(request.params)
-    return 'hello world'
+  @UseGuards(AuthGuard)
+  @Post('message')
+  async postMessage(@Body() body: InsertMessage) {
+    this.messageService.addMessage(body)
+    return body
   }
 }

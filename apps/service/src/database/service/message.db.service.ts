@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { db } from 'database/drizzle'
-import { type InsertMessage, insertMessageSchema, messageTable, usersTable } from 'database/schema'
+import { type InsertMessage, insertMessageSchema, messageTable } from 'database/schema'
 import { eq } from 'drizzle-orm'
 
 @Injectable()
@@ -15,10 +15,10 @@ export class MessageDBService {
     db.delete(messageTable).where(eq(messageTable.content, messageId))
   }
 
-  findAll() {
-    return db
+  async findAll() {
+    const messages = await db
       .select()
       .from(messageTable)
-      .leftJoin(usersTable, eq(usersTable.id, messageTable.userId))
+    return messages
   }
 }

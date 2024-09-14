@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { Message } from './dto'
+import { type AddMessage, Message, addMessageSchema, messageSchema, messagesSchema } from '~/utils'
 
 const request = axios.create({
   baseURL: import.meta.env.VITE_API_HOST,
@@ -8,11 +8,14 @@ const request = axios.create({
 const { get, post, delete: del, put } = request
 
 export function getAllMessages() {
-  return get('/api/messages')
+  return get<Message[]>('/api/messages')
 }
 
-export function postMessage(messages: Message) {
-  return post('/api/messages', messages)
+export function postMessage(messages: AddMessage) {
+  addMessageSchema.parse(messages)
+  return post('/api/message', messages, {
+    withCredentials: true,
+  })
 }
 
 export { get, post, del, put }

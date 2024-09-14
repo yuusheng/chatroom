@@ -5,17 +5,12 @@ import { useEffect, useState } from 'react'
 import { io } from 'socket.io-client'
 import { toast } from 'sonner'
 import { onlineCountAtom, showUserJoinedAtom } from '~/atoms'
-import { getAllMessages } from '~/request'
+import { getAllMessages, postMessage } from '~/request'
+import { Message, messagesSchema } from '~/utils'
 
 const URL = import.meta.env.VITE_API_WS_HOST
 
 const socket = io(URL)
-
-export interface Message {
-  username: string
-  message: string
-  avatar?: string
-}
 
 export function useChat() {
   const setOnlineCount = useSetAtom(onlineCountAtom)
@@ -26,8 +21,9 @@ export function useChat() {
   const [messages, setMessages] = useState<Message[]>([])
   const showUserJoin = useAtomValue(showUserJoinedAtom)
   useEffect(() => {
-    console.log(data)
-    // setMessages(data?.data as any || [])
+    if (data) {
+      setMessages(messagesSchema.parse(data?.data))
+    }
   }, [data])
 
   useEffect(() => {
@@ -55,12 +51,13 @@ export function useChat() {
   }, [showUserJoin])
 
   const { user } = useUser()
-  function send(message: string) {
+  async function send(content: string) {
     if (!user) {
       toast.error('Please Login first')
       return
     }
-    console.log(user, message)
+
+    await postMessage({ userId: user.id, content })
   }
 
   return {

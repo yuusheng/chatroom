@@ -23,8 +23,8 @@ function ChatRoom() {
     <div className="flex flex-col h-full">
       <div className="overflow-auto scrollbar-hidden">
         <div className="flex flex-col gap-4 mb-10">
-          {messages.map(message => (
-            <MessageBubble key={JSON.stringify(message)} message={message} />
+          {messages?.map(message => (
+            <MessageBubble key={message.id} message={message} />
           ))}
         </div>
       </div>

@@ -3,6 +3,7 @@ import process from 'node:process'
 import { Injectable, type OnModuleDestroy, type OnModuleInit } from '@nestjs/common'
 import fse from 'fs-extra'
 import { safeJSONParse } from 'utils'
+import { clerkClient } from '@clerk/clerk-sdk-node'
 
 // eslint-disable-next-line ts/no-require-imports
 const multiavatar = require('@multiavatar/multiavatar')
@@ -34,5 +35,9 @@ export class UserService implements OnModuleDestroy, OnModuleInit {
     const avatarSvg = this.generateAvatar(name)
     this.avatarCache[name] = avatarSvg
     return avatarSvg
+  }
+
+  getUser(userId: string) {
+    return clerkClient.users.getUser(userId)
   }
 }
