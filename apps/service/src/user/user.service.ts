@@ -48,7 +48,6 @@ export class UserService implements OnModuleDestroy, OnModuleInit {
 
   async updateLocalUser(userId: string) {
     const dbUser = await this.userDbService.findUser(userId)
-    console.log(dbUser)
     if (!dbUser) {
       const user = await clerkClient.users.getUser(userId)
       await this.userDbService.createUser({

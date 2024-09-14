@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { db } from 'database/drizzle'
-import { type InsertMessage, insertMessageSchema, messageTable } from 'database/schema'
+import { type InsertMessage, insertMessageSchema, messageTable, usersTable } from 'database/schema'
 import { eq } from 'drizzle-orm'
 
 @Injectable()
@@ -19,6 +19,12 @@ export class MessageDBService {
     const messages = await db
       .select()
       .from(messageTable)
-    return messages
+      .leftJoin(usersTable, eq(usersTable.id, messageTable.userId))
+    return messages.map((message) => {
+      return {
+        ...message.messages,
+        user: message.users,
+      }
+    })
   }
 }

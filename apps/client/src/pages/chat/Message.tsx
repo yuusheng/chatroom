@@ -1,3 +1,4 @@
+import dayjs from 'dayjs'
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/ui/avatar'
 import { Message } from '~/utils'
 
@@ -18,7 +19,7 @@ export function MessageBubble({ message }: { message: Message }) {
             {message.user.nickName}
           </span>
           <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
-            11:46
+            {dayjs(message.createdAt).format('YYYY-MM-DD')}
           </span>
         </div>
         <p className="text-sm font-normal py-2.5 text-gray-900 dark:text-white">

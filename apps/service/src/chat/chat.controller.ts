@@ -21,14 +21,7 @@ export class ChatController {
   @Get('messages')
   async findAll() {
     const messages = await this.messageService.findAll()
-
-    return Promise.all(messages.map(async (message) => {
-      const user = await this.userService.getUser(message.userId)
-      return {
-        ...message,
-        user,
-      }
-    }))
+    return messages
   }
 
   @UseGuards(AuthGuard)

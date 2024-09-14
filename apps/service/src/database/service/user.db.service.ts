@@ -6,8 +6,9 @@ import { eq } from 'drizzle-orm'
 @Injectable()
 export class UserDBService {
   async createUser(user: InsertUser) {
-    insertUsersSchema.parse(user)
+    user = insertUsersSchema.parse(user)
     await db.insert(usersTable).values(user)
+    return user
   }
 
   findAllUser() {
