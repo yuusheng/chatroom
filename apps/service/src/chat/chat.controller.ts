@@ -34,7 +34,8 @@ export class ChatController {
   @UseGuards(AuthGuard)
   @Post('message')
   async postMessage(@Body() body: InsertMessage) {
-    this.messageService.addMessage(body)
+    await this.userService.updateLocalUser(body.userId)
+    await this.messageService.addMessage(body)
     return body
   }
 }
