@@ -1,10 +1,10 @@
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react'
 import { useAtom, useAtomValue } from 'jotai'
-import { SignInButton, SignedIn, SignedOut, UserButton } from '@clerk/clerk-react'
-import { Button } from '../ui/button'
+import { onlineCountAtom, showUserJoinedAtom } from '~/atoms'
 import { Switch } from '~/components/ui/switch'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '~/components/ui/tooltip'
-import { onlineCountAtom, showUserJoinedAtom } from '~/atoms'
 import { url } from '~/utils/url'
+import { Button } from '../ui/button'
 
 export function Header() {
   const onlineCount = useAtomValue(onlineCountAtom)

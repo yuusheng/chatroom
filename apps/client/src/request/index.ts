@@ -19,4 +19,4 @@ export function postMessage(messages: AddMessage) {
   })
 }
 
-export { get, post, del, put }
+export { del, get, post, put }

@@ -1,5 +1,5 @@
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common'
 import { clerkClient } from '@clerk/clerk-sdk-node'
+import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common'
 
 @Injectable()
 export class AuthGuard implements CanActivate {

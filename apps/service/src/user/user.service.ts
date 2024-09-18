@@ -1,10 +1,10 @@
 import { resolve } from 'node:path'
 import process from 'node:process'
+import { clerkClient } from '@clerk/clerk-sdk-node'
 import { Injectable, type OnModuleDestroy, type OnModuleInit } from '@nestjs/common'
+import { UserDBService } from 'database/service/user.db.service'
 import fse from 'fs-extra'
 import { safeJSONParse } from 'utils'
-import { clerkClient } from '@clerk/clerk-sdk-node'
-import { UserDBService } from 'database/service/user.db.service'
 
 // eslint-disable-next-line ts/no-require-imports
 const multiavatar = require('@multiavatar/multiavatar')

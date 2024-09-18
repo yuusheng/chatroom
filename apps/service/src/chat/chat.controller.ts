@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common'
+import { InsertMessage } from 'database/schema'
 import { MessageDBService } from 'database/service/message.db.service'
 import { AuthGuard } from 'user/auth/auth.guard'
-import { InsertMessage } from 'database/schema'
 import { UserService } from 'user/user.service'
 import { ChatGateway } from './chat.gateway'
 
@@ -19,8 +19,8 @@ export class ChatController {
   }
 
   @Get('messages')
-  async findAll() {
-    const messages = await this.messageService.findAll()
+  async findAll(@Body() body: { start?: number, size: number }) {
+    const messages = await this.messageService.findAll(body)
     return messages
   }
 

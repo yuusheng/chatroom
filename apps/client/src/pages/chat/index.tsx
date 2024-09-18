@@ -1,5 +1,5 @@
-import ChatRoom from './ChatRoom'
 import { Header } from '~/components/Header'
+import ChatRoom from './ChatRoom'
 
 function Chat() {
   return (

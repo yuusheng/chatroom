@@ -1,5 +1,5 @@
-import { MessageDBService } from 'database/service/message.db.service'
 import { Injectable } from '@nestjs/common'
+import { MessageDBService } from 'database/service/message.db.service'
 
 @Injectable()
 export class ChatService {
